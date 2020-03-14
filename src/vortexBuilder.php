@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace VortexMathSrc;
 
-use App\Vortex;
+use VortexMathSrc\Vortex;
 
 class VortexBuilder {
     public $vortexModel;

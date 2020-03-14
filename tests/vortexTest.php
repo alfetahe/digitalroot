@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use App\VortexBuilder;
+use VortexMathSrc\VortexBuilder;
 
 final class VortexTest extends TestCase {
     public function testVortexFinal() : void {
