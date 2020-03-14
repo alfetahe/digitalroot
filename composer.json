@@ -1,0 +1,14 @@
+{
+    "name": "anuar/vorx",
+    "type": "library",
+    "description": "Package for creating vortex based math functions.",
+    "keywords": ["vortex","functions"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anuar Saeed",
+            "email": "molotovpolotov@gmail.com",
+            "role": "Developer"
+        }
+    ],
+}
