@@ -1,5 +1,5 @@
 {
-    "name": "anuar/digitalRoot",
+    "name": "anuar/digitalroot",
     "type": "library",
     "description": "Library for getting digital root from numbers and letters.",
     "keywords": ["digital root", "vortex", "numerology"],
