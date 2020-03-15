@@ -34,6 +34,7 @@ class digitalRootBuilder {
         $this->buildSingleInstance($input, $alternative_values);
 
         return [
+            'root' => $this->digitalRootModel->getDigRoot(),
             'digits' => $this->digitalRootModel->getDigRootCompCalc(),
             'numeric' => $this->digitalRootModel->getdigitalRootFullNumericResult()
         ];

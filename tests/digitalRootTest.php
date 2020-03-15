@@ -10,6 +10,7 @@ final class digitalRootTest extends TestCase {
 
     public function testDigitalRootCompleteCalculation() : void {
         $this->assertEquals([
+            'root' => '2',
             'digits' => [2,5,5,4,5,5,5,2],
             'numeric' => '25545552'
         ], 
