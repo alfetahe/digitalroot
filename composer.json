@@ -1,8 +1,8 @@
 {
-    "name": "anuar/vortexmath",
+    "name": "anuar/digitalRoot",
     "type": "library",
-    "description": "Package for creating vortex based math functions.",
-    "keywords": ["vortex","numerology"],
+    "description": "Library for getting digital root from numbers and letters.",
+    "keywords": ["digital root", "vortex", "numerology"],
     "license": "MIT",
     "authors": [
         {
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "VortexMathSrc\\": "src/"
+            "digitalRootSrc\\": "src/"
         }
     },
     "require-dev": {

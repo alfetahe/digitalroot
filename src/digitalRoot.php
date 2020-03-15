@@ -1,8 +1,8 @@
 <?php
 
-namespace VortexMathSrc;
+namespace digitalRootSrc;
 
-class Vortex {
+class digitalRoot {
     private $inputData;
     private $digitInMemory;
     private $digitsInMemory = [];
@@ -17,17 +17,17 @@ class Vortex {
     }
 
     /*  Main output methods */
-    public function getVortexFullDigitsResult()
+    public function getdigitalRootFullDigitsResult()
     {
         return $this->digitsInMemory;
     }
 
-    public function getVortexFullNumericResult()
+    public function getdigitalRootFullNumericResult()
     {
         return implode('', $this->digitsInMemory);
     }
 
-    public function getVortexFinalResult()
+    public function getdigitalRootFinalResult()
     {
       return (String)$this->digitInMemory;
     }
