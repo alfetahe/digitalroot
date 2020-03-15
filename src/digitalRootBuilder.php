@@ -8,8 +8,8 @@ class digitalRootBuilder {
     public $digitalRootModel;
 
     // Builds single digitalRoot instance.
-    private function buildSingleInstance($input) {
-        $this->digitalRootModel = new digitalRoot($input);
+    private function buildSingleInstance($input, $alternative_values = null) {
+        $this->digitalRootModel = new digitalRoot($input, $alternative_values);
     
         // $digitalRootModel->cutInputForNumeric();
 
@@ -22,29 +22,29 @@ class digitalRootBuilder {
         $this->digitalRootModel->calculateDigits();
     }
 
-    public function getDigitalRoot($input)
+    public function getDigitalRoot($input, $alternative_values = null)
     {
-        $this->buildSingleInstance($input);
+        $this->buildSingleInstance($input, $alternative_values);
 
-        return $this->digitalRootModel->getDigitalRoot();
+        return $this->digitalRootModel->getDigRoot();
     }
 
-    public function getdigitalRootFullResult($input) 
+    public function getDigitalRootCompleteCalculation($input, $alternative_values = null) 
     {
-        $this->buildSingleInstance($input);
+        $this->buildSingleInstance($input, $alternative_values);
 
         return [
-            'digits' => $this->digitalRootModel->getDigitalRootCompleteCalculation(),
+            'digits' => $this->digitalRootModel->getDigRootCompCalc(),
             'numeric' => $this->digitalRootModel->getdigitalRootFullNumericResult()
         ];
     }
 
-    public function getdigitalRootBulkResult($values) {
+    public function getdigitalRootBulk($values, $alternative_values = null) {
         $returnData = [];
 
         foreach($values as $value) {
-            $this->buildSingleInstance($value);
-            $returnData[$value] = $this->digitalRootModel->getDigitalRoot();
+            $this->buildSingleInstance($value, $alternative_values);
+            $returnData[$value] = $this->digitalRootModel->getDigRoot();
         }
 
         return $returnData;

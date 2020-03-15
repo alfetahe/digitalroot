@@ -4,28 +4,32 @@ use PHPUnit\Framework\TestCase;
 use digitalRootSrc\digitalRootBuilder;
 
 final class digitalRootTest extends TestCase {
-    public function testdigitalRootFinal() : void {
+    public function testDigitalRoot() : void {
         $this->assertEquals("2", (new digitalRootBuilder)->getDigitalRoot("23081996"));
     }
 
-    public function testdigitalRootFull() : void {
+    public function testDigitalRootCompleteCalculation() : void {
         $this->assertEquals([
             'digits' => [2,5,5,4,5,5,5,2],
             'numeric' => '25545552'
         ], 
-        (new digitalRootBuilder)->getdigitalRootFullResult("23081996"));
+        (new digitalRootBuilder)->getDigitalRootCompleteCalculation("23081996"));
     }
 
-    public function testdigitalRootBulk() : void {
+    public function testDigitalRootBulk() : void {
         $this->assertEquals([
             '23081996' => '2',
             '43434336' => '3'
         ],
-        (new digitalRootBuilder)->getdigitalRootBulkResult(['23081996','43434336']));
+        (new digitalRootBuilder)->getdigitalRootBulk(['23081996','43434336']));
     }
 
-    public function testdigitalRootFinalLetters() : void {
+    public function testDigitalRootLetters() : void {
         $this->assertEquals("3", (new digitalRootBuilder)->getDigitalRoot("a,..,b"));
+    }
+
+    public function testDigitalRootAlternativeLetters() : void {
+        $this->assertEquals("9", (new digitalRootBuilder)->getDigitalRoot("abc12", ["A" => 1, "B" => 2, "C" => 3]));
     }
 
 }

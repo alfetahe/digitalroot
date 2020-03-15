@@ -8,21 +8,23 @@ class digitalRoot {
     private $digitsInMemory = [];
     private $digitInMemoryFirstChar;
     private $digitInMemorySecondChar;
+    private $letterNumericValues;
 
-    public function __construct($input)
+    public function __construct($input, $alternative_values = null)
     {
         $this->inputData = $input;
         $this->digitInMemory = 0;
         $this->digitsInMemory = [];
+        $this->letterNumericValues = $alternative_values ?? require('config/letters.php');
     }
 
     /*  Main output methods */
-    public function getDigitalRoot()
+    public function getDigRoot()
     {
       return (String)$this->digitInMemory;
     }
 
-    public function getDigitalRootCompleteCalculation()
+    public function getDigRootCompCalc() 
     {
         return $this->digitsInMemory;
     }
@@ -76,12 +78,10 @@ class digitalRoot {
 
     public function convertLettersToNumbers()
     {
-        $letterNumericValues = require('config/letters.php');
-
         foreach ($this->inputData as $key => $char) {
             if (!is_numeric($char)) {
                 $upperCaseChar = strtoupper($char);
-                $this->inputData[$key] = $letterNumericValues[$upperCaseChar];
+                $this->inputData[$key] = $this->letterNumericValues[$upperCaseChar];
             }
         }
     }
