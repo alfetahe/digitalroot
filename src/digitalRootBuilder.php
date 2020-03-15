@@ -22,11 +22,11 @@ class digitalRootBuilder {
         $this->digitalRootModel->calculateDigits();
     }
 
-    public function getdigitalRootFinalResult($input)
+    public function getDigitalRoot($input)
     {
         $this->buildSingleInstance($input);
 
-        return $this->digitalRootModel->getdigitalRootFinalResult();
+        return $this->digitalRootModel->getDigitalRoot();
     }
 
     public function getdigitalRootFullResult($input) 
@@ -34,7 +34,7 @@ class digitalRootBuilder {
         $this->buildSingleInstance($input);
 
         return [
-            'digits' => $this->digitalRootModel->getdigitalRootFullDigitsResult(),
+            'digits' => $this->digitalRootModel->getDigitalRootCompleteCalculation(),
             'numeric' => $this->digitalRootModel->getdigitalRootFullNumericResult()
         ];
     }
@@ -44,7 +44,7 @@ class digitalRootBuilder {
 
         foreach($values as $value) {
             $this->buildSingleInstance($value);
-            $returnData[$value] = $this->digitalRootModel->getdigitalRootFullNumericResult();
+            $returnData[$value] = $this->digitalRootModel->getDigitalRoot();
         }
 
         return $returnData;

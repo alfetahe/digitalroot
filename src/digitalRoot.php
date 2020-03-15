@@ -17,7 +17,12 @@ class digitalRoot {
     }
 
     /*  Main output methods */
-    public function getdigitalRootFullDigitsResult()
+    public function getDigitalRoot()
+    {
+      return (String)$this->digitInMemory;
+    }
+
+    public function getDigitalRootCompleteCalculation()
     {
         return $this->digitsInMemory;
     }
@@ -25,11 +30,6 @@ class digitalRoot {
     public function getdigitalRootFullNumericResult()
     {
         return implode('', $this->digitsInMemory);
-    }
-
-    public function getdigitalRootFinalResult()
-    {
-      return (String)$this->digitInMemory;
     }
 
     /* Worker methods */
