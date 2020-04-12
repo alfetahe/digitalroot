@@ -77,7 +77,7 @@ class digitalRoot {
     public function getDigRootFullCalculation() 
     {
         return [
-          'string' => implode('', $this->fullCalculation),
+          'string' => implode(' ', $this->fullCalculation),
           'array' => $this->fullCalculation
         ];
     }
@@ -85,7 +85,7 @@ class digitalRoot {
     public function getSingleDigitSummaries() 
     {
         return [
-            'string' => implode('', $this->singleDigitSummaries),
+            'string' => implode(' ', $this->singleDigitSummaries),
             'array' => $this->singleDigitSummaries
         ];
     }
@@ -93,7 +93,7 @@ class digitalRoot {
     public function getDoubleDigitSummaries() 
     {
         return [
-            'string' => implode('', $this->doubleDigitSummaries),
+            'string' => implode(' ', $this->doubleDigitSummaries),
             'array' => $this->doubleDigitSummaries
         ];
     }
@@ -101,7 +101,7 @@ class digitalRoot {
     public function getDigRootddsSeparated() 
     {
         return [
-            'string' => implode('', $this->ddsSeparated),
+            'string' => implode(' ', $this->ddsSeparated),
             'array' => $this->ddsSeparated
         ];
     }
@@ -109,7 +109,7 @@ class digitalRoot {
     public function getDigRootddssSummaries() 
     {
         return [
-            'string' => implode('', $this->ddssSummaries),
+            'string' => implode(' ', $this->ddssSummaries),
             'array' => $this->ddssSummaries
         ];
     }
