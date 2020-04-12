@@ -13,11 +13,29 @@ final class digitalRootTest extends TestCase {
 
     public function testDigitalRootCompleteCalculation() : void {
         $this->assertEquals([
-            'client_input' => '23081996',
-            'digital_root' => '2',
-            'digits' => [2,5,5,4,5,5,5,2],
-            'numeric' => '25545552'
-        ], (new digitalRootBuilder)->getDigitalRootCompleteCalculation('23081996'));
+            'client_input' => '299493218',
+            'digital_root' => 2,
+            'full_calculation' => [
+                'string' => '2911112911112469151563921111213811112',
+                'array' => [2,9,11,1,1,2,9,11,1,1,2,4,6,9,15,1,5,6,3,9,2,11,1,1,2,1,3,8,11,1,1,2]
+            ],
+            'single_digit_summaries' => [
+                'string' => '693',
+                'array' => [6,9,3]
+            ],
+            'double_digit_summaries' => [
+                'string' => '1111151111',
+                'array' => [11,11,15,11,11]
+            ],
+            'double_digit_summaries_separated_digits' => [
+                'string' => '1111151111',
+                'array' => [1,1,1,1,1,5,1,1,1,1]
+            ],
+            'double_digit_summaries_separated_digits_summaries' => [
+                'string' => '22622',
+                'array' => [2,2,6,2,2]
+            ],
+        ], (new digitalRootBuilder)->getDigitalRootCompleteCalculation('299493218'));
     }
 
     public function testDigitalRootBulk() : void {
