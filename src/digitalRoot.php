@@ -57,6 +57,7 @@ class digitalRoot {
         }
     }
 
+    // For a non-zero number num, digital root is 9 if number is divisible by 9, else digital root is num % 9.
     public function shortCalculation()
     {
         $modulus = array_sum($this->inputData) % 9;

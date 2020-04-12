@@ -26,7 +26,10 @@ class digitalRootBuilder {
 
         $this->digitalRootModel->shortCalculation();
 
-        return $this->digitalRootModel->getDigRoot();
+        return [
+            'client_input' => $this->digitalRootModel->getOrigInput(),
+            'digital_root' => $this->digitalRootModel->getDigRoot()
+        ];
     }
 
     public function getDigitalRootCompleteCalculation($input, $alternative_values = null) 
@@ -37,7 +40,7 @@ class digitalRootBuilder {
 
         return [
             'client_input' => $this->digitalRootModel->getOrigInput(),
-            'root' => $this->digitalRootModel->getDigRoot(),
+            'digital_root' => $this->digitalRootModel->getDigRoot(),
             'digits' => $this->digitalRootModel->getDigRootCompCalc(),
             'numeric' => $this->digitalRootModel->getdigitalRootFullNumericResult()
         ];
