@@ -34,6 +34,7 @@ class digitalRootBuilder {
         return [
             'client_input' => $this->digitalRootModel->getOrigInput(),
             'digital_root' => $this->digitalRootModel->getDigRoot(),
+            'digital_root_from' => $this->digitalRootModel->getDigitalRootFrom(),
             'full_calculation' => $this->digitalRootModel->getDigRootFullCalculation(),
             'single_digit_summaries' => $this->digitalRootModel->getSingleDigitSummaries(),
             'double_digit_summaries' => $this->digitalRootModel->getDoubleDigitSummaries(),

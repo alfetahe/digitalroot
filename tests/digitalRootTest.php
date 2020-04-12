@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use digitalRootSrc\digitalRootBuilder;
+use digitalRootSrc\digitalRoot;
 
 final class digitalRootTest extends TestCase {
     public function testDigitalRoot() : void {
@@ -15,6 +16,7 @@ final class digitalRootTest extends TestCase {
         $this->assertEquals([
             'client_input' => '299493218',
             'digital_root' => 2,
+            'digital_root_from' => digitalRoot::DOUBLE_DIGIT_SEPARATION_SUMMARY,
             'full_calculation' => [
                 'string' => '2 9 11 1 1 2 9 11 1 1 2 4 6 9 15 1 5 6 3 9 2 11 1 1 2 1 3 8 11 1 1 2',
                 'array' => [2,9,11,1,1,2,9,11,1,1,2,4,6,9,15,1,5,6,3,9,2,11,1,1,2,1,3,8,11,1,1,2]

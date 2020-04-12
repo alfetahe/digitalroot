@@ -6,8 +6,8 @@ class digitalRoot {
 
     // TODO
     // Two possibilities from which the digital root can result.
-    const SINGLE_DIGIT_SUMMARY = "Summary from single digits.";
-    const DOUBLE_DIGITS_SEPARATION_SUMMARY = "Summary from separated double digits.";
+    const SINGLE_DIGIT_SUMMARY = "Summary from adding two single digits.";
+    const DOUBLE_DIGIT_SEPARATION_SUMMARY = "Summary from splitting double digit value and adding both digits togather.";
 
     private $inputData;
     private $digitInMemory;
@@ -16,6 +16,7 @@ class digitalRoot {
     private $digitInMemorySecondChar;
     private $letterNumericValues;
     private $activeOrigDigit;
+    private $digRootFrom;
 
     // From what calculation came the digital root.
     private $DigitalRootFrom;
@@ -114,6 +115,11 @@ class digitalRoot {
         ];
     }
 
+    public function getDigitalRootFrom()
+    {
+        return $this->digRootFrom;
+    }
+
     /* Worker methods */
 
     // For a non-zero number num, digital root is 9 if number is divisible by 9, else digital root is num % 9.
@@ -135,12 +141,15 @@ class digitalRoot {
 
             $this->populateFullCalculation();
 
+            $this->digRootFrom = digitalRoot::SINGLE_DIGIT_SUMMARY;
+
             if (!$this->checkIfSingleDigit()) {
                 $this->populateDoubleDigitSummaries();
                 $this->cutDoubleDigitInMemoryHalf();
                 $this->populateDDSSepartedDigits();
                 $this->populateFullCalculation();
                 $this->addSingleDigits();
+                $this->digRootFrom = digitalRoot::DOUBLE_DIGIT_SEPARATION_SUMMARY;
             } else {
                 $this->populateSingleDigitSummaries();
             }
