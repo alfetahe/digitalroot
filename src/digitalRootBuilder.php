@@ -18,13 +18,13 @@ class digitalRootBuilder {
         $this->digitalRootModel->explodeInput();
 
         $this->digitalRootModel->convertLettersToNumbers();
-
-        $this->digitalRootModel->calculateDigits();
     }
 
     public function getDigitalRoot($input, $alternative_values = null)
     {
         $this->buildSingleInstance($input, $alternative_values);
+
+        $this->digitalRootModel->shortCalculation();
 
         return $this->digitalRootModel->getDigRoot();
     }
@@ -32,8 +32,11 @@ class digitalRootBuilder {
     public function getDigitalRootCompleteCalculation($input, $alternative_values = null) 
     {
         $this->buildSingleInstance($input, $alternative_values);
+        
+        $this->digitalRootModel->longCalculation();
 
         return [
+            'client_input' => $this->digitalRootModel->getOrigInput(),
             'root' => $this->digitalRootModel->getDigRoot(),
             'digits' => $this->digitalRootModel->getDigRootCompCalc(),
             'numeric' => $this->digitalRootModel->getdigitalRootFullNumericResult()
@@ -45,6 +48,7 @@ class digitalRootBuilder {
 
         foreach($values as $value) {
             $this->buildSingleInstance($value, $alternative_values);
+            $this->digitalRootModel->shortCalculation();
             $returnData[$value] = $this->digitalRootModel->getDigRoot();
         }
 

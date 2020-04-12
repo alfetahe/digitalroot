@@ -4,6 +4,7 @@ namespace digitalRootSrc;
 
 class digitalRoot {
     private $inputData;
+    private $orign_input;
     private $digitInMemory;
     private $digitsInMemory = [];
     private $digitInMemoryFirstChar;
@@ -13,6 +14,7 @@ class digitalRoot {
     public function __construct($input, $alternative_values = null)
     {
         $this->inputData = $input;
+        $this->orig_input = $input;
         $this->digitInMemory = 0;
         $this->digitsInMemory = [];
         $this->letterNumericValues = $alternative_values ?? require('config/letters.php');
@@ -34,8 +36,13 @@ class digitalRoot {
         return implode('', $this->digitsInMemory);
     }
 
+    public function getOrigInput()
+    {
+        return $this->orig_input;
+    }
+
     /* Worker methods */
-    public function calculateDigits()
+    public function longCalculation()
     {
         foreach ($this->inputData as $digit) {
 
@@ -48,6 +55,13 @@ class digitalRoot {
 
             $this->addDigits();
         }
+    }
+
+    public function shortCalculation()
+    {
+        $modulus = array_sum($this->inputData) % 9;
+
+        $this->digitInMemory = $modulus == 0 ? 9 : $modulus;
     }
 
     private function setFirstDigit() {
