@@ -4,7 +4,6 @@ namespace digitalRootSrc;
 
 class digitalRoot {
 
-    // TODO
     // Two possibilities from which the digital root can result.
     const SINGLE_DIGIT_SUMMARY = "Summary from adding two single digits.";
     const DOUBLE_DIGIT_SEPARATION_SUMMARY = "Summary from splitting double digit value and adding both digits togather.";
@@ -43,16 +42,12 @@ class digitalRoot {
     public function __construct($input, $alternative_values = null)
     {
         $this->inputData = $input;
-
         // $digitalRootModel->cutInputForNumeric();
         $this->cutInputForNumericLetters();
         $this->explodeInput();
-
         $this->letterNumericValues = $alternative_values ?? require('config/letters.php');
         $this->convertLettersToNumbers();
-
         $this->convertDigitsToInt();
-
         $this->digitsInMemory = [];
         // Set the first digit from client input to the first digit in memory and to the full calculation array.
         $this->digitInMemory = isset($this->inputData[0]) ? $this->inputData[0] : 0;
@@ -141,21 +136,20 @@ class digitalRoot {
 
             $this->populateFullCalculation();
 
-            $this->digRootFrom = digitalRoot::SINGLE_DIGIT_SUMMARY;
-
-            if (!$this->checkIfSingleDigit()) {
+            if ($this->checkIfDoubleDigit()) {
                 $this->populateDoubleDigitSummaries();
                 $this->cutDoubleDigitInMemoryHalf();
                 $this->populateDDSSepartedDigits();
                 $this->populateFullCalculation();
                 $this->addSingleDigits();
-                $this->digRootFrom = digitalRoot::DOUBLE_DIGIT_SEPARATION_SUMMARY;
             } else {
                 $this->populateSingleDigitSummaries();
             }
 
             $this->populateDigits();
         }
+
+        $this->setDigitalRootFrom();
     }
 
 
@@ -165,9 +159,23 @@ class digitalRoot {
         }
     }
 
-    private function checkIfSingleDigit()
+    private function checkIfDoubleDigit($digits = null)
     {
-        return (strlen((String)$this->digitInMemory) == 1) ? true : false;
+        $digits = $digits ?? $this->digitInMemory;
+
+        return (strlen((String)$digits) == 2) ? true : false;
+    }
+
+    private function setDigitalRootFrom()
+    {
+        // The last fourth element must be two digit element if the digital root
+        // comes from the double digit separation summary.
+        $x = count((array)$this->fullCalculation) - 4;
+        if (isset($this->fullCalculation[$x]) && $this->checkIfDoubleDigit($this->fullCalculation[$x])) {
+            $this->digRootFrom = digitalRoot::DOUBLE_DIGIT_SEPARATION_SUMMARY;
+        } else {
+            $this->digRootFrom = digitalRoot::SINGLE_DIGIT_SUMMARY;
+        }
     }
 
     private function addSingleDigits()
