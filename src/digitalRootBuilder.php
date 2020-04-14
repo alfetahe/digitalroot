@@ -5,14 +5,26 @@ namespace digitalRootSrc;
 use digitalRootSrc\digitalRoot;
 
 class digitalRootBuilder
-{
-
-    // Returns single digitalRoot instance.
+{  
+    /**
+     * Returns single digitalRoot instance.
+     *
+     * @param  mixed $input
+     * @param  mixed $alternative_values
+     * @return digitalRoot
+     */
     private static function buildSingleInstance(string $input, array $alternative_values = null): digitalRoot
     {
         return (new digitalRoot($input, $alternative_values));
     }
-
+    
+    /**
+     * getDigitalRoot
+     *
+     * @param  mixed $input
+     * @param  mixed $alternative_values
+     * @return array
+     */
     public static function getDigitalRoot(string $input, array $alternative_values = null): array
     {
         $digitalRootModel = digitalRootBuilder::buildSingleInstance($input, $alternative_values);
@@ -24,7 +36,14 @@ class digitalRootBuilder
             'digital_root' => $digitalRootModel->getDigRoot()
         ];
     }
-
+    
+    /**
+     * getDigitalRootCompleteCalculation
+     *
+     * @param  mixed $input
+     * @param  mixed $alternative_values
+     * @return array
+     */
     public static function getDigitalRootCompleteCalculation(string $input, array $alternative_values = null): array
     {
         $digitalRootModel = digitalRootBuilder::buildSingleInstance($input, $alternative_values);
@@ -42,7 +61,14 @@ class digitalRootBuilder
             'double_digit_summaries_separated_digits_summaries' => $digitalRootModel->getDigRootddssSummaries(),
         ];
     }
-
+    
+    /**
+     * getdigitalRootBulk
+     *
+     * @param  mixed $values
+     * @param  mixed $alternative_values
+     * @return array
+     */
     public function getdigitalRootBulk(array $values, array $alternative_values = null): array
     {
         $returnData = [];

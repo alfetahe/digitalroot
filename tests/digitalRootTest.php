@@ -5,7 +5,12 @@ use digitalRootSrc\digitalRootBuilder;
 use digitalRootSrc\digitalRoot;
 
 final class digitalRootTest extends TestCase
-{
+{    
+    /**
+     * testDigitalRoot
+     *
+     * @return void
+     */
     public function testDigitalRoot(): void
     {
         $this->assertEquals([
@@ -13,7 +18,12 @@ final class digitalRootTest extends TestCase
             'digital_root' => '2'
         ], digitalRootBuilder::getDigitalRoot('23081996'));
     }
-
+    
+    /**
+     * testDigitalRootCompleteCalculation
+     *
+     * @return void
+     */
     public function testDigitalRootCompleteCalculation(): void
     {
         $this->assertEquals([
@@ -42,7 +52,12 @@ final class digitalRootTest extends TestCase
             ],
         ], digitalRootBuilder::getDigitalRootCompleteCalculation('299493218'));
     }
-
+    
+    /**
+     * testDigitalRootBulk
+     *
+     * @return void
+     */
     public function testDigitalRootBulk(): void
     {
         $this->assertEquals([
@@ -50,7 +65,12 @@ final class digitalRootTest extends TestCase
             '43434336' => '3'
         ], digitalRootBuilder::getdigitalRootBulk(['23081996', '43434336']));
     }
-
+    
+    /**
+     * testDigitalRootLetters
+     *
+     * @return void
+     */
     public function testDigitalRootLetters(): void
     {
         $this->assertEquals([
@@ -58,7 +78,12 @@ final class digitalRootTest extends TestCase
             'digital_root' => '3'
         ], digitalRootBuilder::getDigitalRoot('a,..,b'));
     }
-
+    
+    /**
+     * testDigitalRootAlternativeLetters
+     *
+     * @return void
+     */
     public function testDigitalRootAlternativeLetters(): void
     {
         $this->assertEquals([

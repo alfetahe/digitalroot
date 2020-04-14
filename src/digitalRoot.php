@@ -2,54 +2,136 @@
 
 namespace digitalRootSrc;
 
-class digitalRoot {
+use phpDocumentor\Reflection\Types\Boolean;
 
-    // Two possibilities from which the digital root can result.
+/**
+ * digitalRoot
+ */
+class digitalRoot
+{
+
+    /**
+     * Two possibilities from which the digital root can result.
+     */ 
     const SINGLE_DIGIT_SUMMARY = "Summary from adding two single digits.";
     const DOUBLE_DIGIT_SEPARATION_SUMMARY = "Summary from splitting double digit value and adding both digits togather.";
-
+    
+    /**
+     * inputData
+     *
+     * @var mixed
+     */
     private $inputData;
-    private $digitInMemory;
+        
+    /**
+     * digitInMemory
+     *
+     * @var int
+     */
+    private $digitInMemory;  
+
+    /**
+     * digitsInMemory
+     *
+     * @var array
+     */
     private $digitsInMemory = [];
+        
+    /**
+     * digitInMemoryFirstChar
+     *
+     * @var int
+     */
     private $digitInMemoryFirstChar;
+    
+    /**
+     * digitInMemorySecondChar
+     *
+     * @var int
+     */
     private $digitInMemorySecondChar;
+    
+    /**
+     * letterNumericValues
+     *
+     * @var mixed
+     */
     private $letterNumericValues;
+    
+    /**
+     * activeOrigDigit
+     *
+     * @var mixed
+     */
     private $activeOrigDigit;
+    
+    /**
+     * Digital root last calculation cycle type.
+     *
+     * @var mixed
+     */
     private $digRootFrom;
-
-    // From what calculation came the digital root.
-    private $DigitalRootFrom;
-
-    // Client input, original digits.
+  
+    /**
+     * Client input, original digits.  
+     *
+     * @var mixed
+     */
     private $orignInput;
-
-    // Single digit summaries.
+   
+    /**
+     * Single digit summaries. 
+     *
+     * @var mixed
+     */
     private $singleDigitSummaries;
-
-    // Double digit summaries.
+  
+    /**
+     * Double digit summaries.  
+     *
+     * @var mixed
+     */
     private $doubleDigitSummaries;
-
-    // Double digit summaries separated digits.
+   
+    /**
+     * Double digit summaries separated digits. 
+     *
+     * @var mixed
+     */
     private $ddsSeparated;
-
-    // Summaries from separated double digits.
+  
+    /**
+     * Summaries from separated double digits.  
+     *
+     * @var mixed
+     */
     private $ddssSummaries;
 
-    // Full calculation
+    /**
+     * Full calculation
+     *
+     * @var mixed
+     */
     private $fullCalculation;
 
-
-    public function __construct($input, $alternative_values = null)
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $input
+     * @param  mixed $alternative_values
+     * @return void
+     */
+    public function __construct(string $input, array $alternative_values = null)
     {
         $this->inputData = $input;
-        // $digitalRootModel->cutInputForNumeric();
+        // $this->cutInputForNumeric();
         $this->cutInputForNumericLetters();
         $this->explodeInput();
         $this->letterNumericValues = $alternative_values ?? require('config/letters.php');
         $this->convertLettersToNumbers();
         $this->convertDigitsToInt();
         $this->digitsInMemory = [];
-        // Set the first digit from client input to the first digit in memory and to the full calculation array.
         $this->digitInMemory = isset($this->inputData[0]) ? $this->inputData[0] : 0;
         $this->activeOrigDigit = isset($this->inputData[0]) ? $this->inputData[0] : 0;
         $this->fullCalculation = isset($this->inputData[0]) ? [$this->inputData[0]] : [];
@@ -58,74 +140,130 @@ class digitalRoot {
         $this->doubleDigitSummaries = [];
         $this->ddssSummaries = [];
     }
+ 
 
-    /*  Main output methods */
-    public function getDigRoot()
+    /**
+     * MAIN OUTPUT METHODS
+     */
+
+    /**
+     * getDigRoot
+     *
+     * @return int
+     */
+    public function getDigRoot() : int
     {
-      return $this->digitInMemory;
+        return $this->digitInMemory;
     }
     
-    public function getOrigInput()
+    /**
+     * getOrigInput
+     *
+     * @return string
+     */
+    public function getOrigInput() : string
     {
         return $this->origInput;
     }
-
-    public function getDigRootFullCalculation() 
+    
+    /**
+     * getDigRootFullCalculation
+     *
+     * @return array
+     */
+    public function getDigRootFullCalculation() : array
     {
         return [
-          'string' => implode(' ', $this->fullCalculation),
-          'array' => $this->fullCalculation
+            'string' => implode(' ', $this->fullCalculation),
+            'array' => $this->fullCalculation
         ];
     }
-
-    public function getSingleDigitSummaries() 
+    
+    /**
+     * getSingleDigitSummaries
+     *
+     * @return array
+     */
+    public function getSingleDigitSummaries() : array
     {
         return [
             'string' => implode(' ', $this->singleDigitSummaries),
             'array' => $this->singleDigitSummaries
         ];
     }
-
-    public function getDoubleDigitSummaries() 
+    
+    /**
+     * getDoubleDigitSummaries
+     *
+     * @return array
+     */
+    public function getDoubleDigitSummaries() : array
     {
         return [
             'string' => implode(' ', $this->doubleDigitSummaries),
             'array' => $this->doubleDigitSummaries
         ];
     }
-
-    public function getDigRootddsSeparated() 
+    
+    /**
+     * getDigRootddsSeparated
+     *
+     * @return array
+     */
+    public function getDigRootddsSeparated() : array
     {
         return [
             'string' => implode(' ', $this->ddsSeparated),
             'array' => $this->ddsSeparated
         ];
     }
-
-    public function getDigRootddssSummaries() 
+    
+    /**
+     * getDigRootddssSummaries
+     *
+     * @return array
+     */
+    public function getDigRootddssSummaries() : array
     {
         return [
             'string' => implode(' ', $this->ddssSummaries),
             'array' => $this->ddssSummaries
         ];
     }
-
-    public function getDigitalRootFrom()
+    
+    /**
+     * getDigitalRootFrom
+     *
+     * @return string
+     */
+    public function getDigitalRootFrom() : string
     {
         return $this->digRootFrom;
     }
 
-    /* Worker methods */
 
-    // For a non-zero number num, digital root is 9 if number is divisible by 9, else digital root is num % 9.
-    public function shortCalculation()
+    /**
+     * WORKER METHODS
+     */
+   
+    /**
+     * For a non-zero number num, digital root is 9 if number is divisible by 9, else digital root is num % 9.
+     *
+     * @return void
+     */
+    public function shortCalculation() : void
     {
         $modulus = array_sum($this->inputData) % 9;
 
         $this->digitInMemory = $modulus == 0 ? 9 : $modulus;
     }
-
-    public function longCalculation()
+    
+    /**
+     * Creates long calculation for the digitalroot. Provides different kind of data.
+     *
+     * @return void
+     */
+    public function longCalculation() : void
     {
         // We dont loop thru first element since it is already added in the construction method.
         foreach (array_slice($this->inputData, 1) as $digit) {
@@ -151,34 +289,43 @@ class digitalRoot {
 
         $this->setDigitalRootFrom();
     }
-
-
-    private function setFirstDigit() {
-        if (is_array($this->inputData) && array_key_exists(0, $this->inputData)) {
-            $this->digitsInMemory[0] = $this->inputData[0];
-        }
-    }
-
-    private function checkIfDoubleDigit($digits = null)
+    
+    /**
+     * checkIfDoubleDigit
+     *
+     * @param  mixed $digits
+     * @return bool
+     */
+    private function checkIfDoubleDigit(int $digits = null) : bool
     {
         $digits = $digits ?? $this->digitInMemory;
 
-        return (strlen((String)$digits) == 2) ? true : false;
+        return (strlen((string) $digits) == 2) ? true : false;
     }
-
-    private function setDigitalRootFrom()
+    
+    /**
+     * setDigitalRootFrom
+     *
+     * @return void
+     */
+    private function setDigitalRootFrom() : void
     {
         // The last fourth element must be two digit element if the digital root
         // comes from the double digit separation summary.
-        $x = count((array)$this->fullCalculation) - 4;
+        $x = count((array) $this->fullCalculation) - 4;
         if (isset($this->fullCalculation[$x]) && $this->checkIfDoubleDigit($this->fullCalculation[$x])) {
             $this->digRootFrom = digitalRoot::DOUBLE_DIGIT_SEPARATION_SUMMARY;
         } else {
             $this->digRootFrom = digitalRoot::SINGLE_DIGIT_SUMMARY;
         }
     }
-
-    private function addSingleDigits()
+    
+    /**
+     * addSingleDigits
+     *
+     * @return void
+     */
+    private function addSingleDigits() : void
     {
         $this->digitInMemory = $this->digitInMemoryFirstChar + $this->digitInMemorySecondChar;
         // Adds automatically summaries from separated double digits to the array.
@@ -186,21 +333,40 @@ class digitalRoot {
         $this->unsetMethod();
         $this->populateFullCalculation();
     }
-
-    // Unsets first and second digit in memory for populating the full calculation method.
-    private function unsetMethod() {
+    
+    /**
+     * Unsetting method for the full calculation method .
+     *
+     * @return void
+     */
+    private function unsetMethod() : void
+    {
         unset($this->digitInMemoryFirstChar);
         unset($this->digitInMemorySecondChar);
         unset($this->activeOrigDigit);
     }
 
 
-    // Input data worker methods.
-    public function convertDigitsToInt() {
+    /**
+     * INPUT DATA WORKER METHODS
+     */
+        
+    /**
+     * convertDigitsToInt
+     *
+     * @return void
+     */
+    public function convertDigitsToInt() : void
+    {
         $this->inputData  = array_map('intval', $this->inputData);
     }
-
-    public function convertLettersToNumbers()
+    
+    /**
+     * convertLettersToNumbers
+     *
+     * @return void
+     */
+    public function convertLettersToNumbers() : void
     {
         foreach ($this->inputData as $key => $char) {
             if (!is_numeric($char)) {
@@ -209,62 +375,118 @@ class digitalRoot {
             }
         }
     }
-
-    public function cutInputForNumeric()
+    
+    /**
+     * cutInputForNumeric
+     *
+     * @return void
+     */
+    public function cutInputForNumeric() : void
     {
         if (!empty($this->inputData)) {
             $this->inputData = preg_replace("/[^0-9]/", "", $this->inputData);
         }
     }
-
-    public function cutInputForNumericLetters()
+    
+    /**
+     * cutInputForNumericLetters
+     *
+     * @return void
+     */
+    public function cutInputForNumericLetters() : void
     {
         if (!empty($this->inputData)) {
             $this->inputData = preg_replace("/[^0-9a-zA-Z]/", "", $this->inputData);
         }
     }
-
-    public function explodeIntegerInput()
+    
+    /**
+     * explodeIntegerInput
+     *
+     * @return void
+     */
+    public function explodeIntegerInput() : void
     {
         if (ctype_digit($this->inputData)) {
             $this->inputData  = array_map('intval', str_split($this->inputData));
         }
     }
-
-    public function explodeInput()
+    
+    /**
+     * explodeInput
+     *
+     * @return void
+     */
+    public function explodeInput() : void
     {
         if (!empty($this->inputData)) {
             $this->inputData  = str_split($this->inputData);
         }
     }
-
-    private function cutDoubleDigitInMemoryHalf()
+    
+    /**
+     * cutDoubleDigitInMemoryHalf
+     *
+     * @return void
+     */
+    private function cutDoubleDigitInMemoryHalf() : void
     {
-        $this->digitInMemoryFirstChar = (int)substr($this->digitInMemory, 0, 1);
-        $this->digitInMemorySecondChar = (int)substr($this->digitInMemory, 1, 1);
+        $this->digitInMemoryFirstChar = (int) substr($this->digitInMemory, 0, 1);
+        $this->digitInMemorySecondChar = (int) substr($this->digitInMemory, 1, 1);
     }
 
-
-
-    // Functions for populating output arrays.
-    private function populateSingleDigitSummaries() {
+    /**
+     * FUNCTIONS FOR POPULATING THE OUTPUT ARRAYS.
+     */
+       
+    /**
+     * populateSingleDigitSummaries
+     *
+     * @return void
+     */
+    private function populateSingleDigitSummaries() : void
+    {
         $this->singleDigitSummaries[] = $this->digitInMemory;
     }
-
-    private function populateDoubleDigitSummaries() {
+    
+    /**
+     * populateDoubleDigitSummaries
+     *
+     * @return void
+     */
+    private function populateDoubleDigitSummaries() : void
+    {
         $this->doubleDigitSummaries[] = $this->digitInMemory;
     }
-
-    private function populateDDSSepartedDigits() {
+    
+    /**
+     * populateDDSSepartedDigits
+     *
+     * @return void
+     */
+    private function populateDDSSepartedDigits() : void
+    {
         $this->ddsSeparated[] = $this->digitInMemoryFirstChar;
         $this->ddsSeparated[] = $this->digitInMemorySecondChar;
     }
-
-    private function populateDdssSummaries() {
+    
+    /**
+     * populateDdssSummaries
+     *
+     * @return void
+     */
+    private function populateDdssSummaries() : void
+    {
         $this->ddssSummaries[] =  $this->digitInMemory;
     }
-
-    private function populateFullCalculation() {
+    
+    /**
+     * populateFullCalculation
+     *
+     * @return void
+     */
+    private function populateFullCalculation() : void
+    {
         if (isset($this->digitInMemoryFirstChar) && isset($this->digitInMemorySecondChar)) {
             $this->fullCalculation[] = $this->digitInMemoryFirstChar;
             $this->fullCalculation[] = $this->digitInMemorySecondChar;
@@ -275,11 +497,14 @@ class digitalRoot {
             $this->fullCalculation[] = $this->digitInMemory;
         }
     }
-
-    private function populateDigits() {
-        $this->digitsInMemory[] = (int)$this->digitInMemory;
-    }
     
+    /**
+     * populateDigits
+     *
+     * @return void
+     */
+    private function populateDigits() : void
+    {
+        $this->digitsInMemory[] = (int) $this->digitInMemory;
+    }
 }
-
-?>
