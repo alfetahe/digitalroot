@@ -69,7 +69,7 @@ class digitalRootBuilder
      * @param  mixed $alternative_values
      * @return array
      */
-    public function getdigitalRootBulk(array $values, array $alternative_values = null): array
+    public static function getdigitalRootBulk(array $values, array $alternative_values = null): array
     {
         $returnData = [];
 
