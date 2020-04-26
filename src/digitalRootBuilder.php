@@ -5,7 +5,7 @@ namespace digitalRootSrc;
 use digitalRootSrc\digitalRoot;
 
 class digitalRootBuilder
-{  
+{
     /**
      * Returns single digitalRoot instance.
      *
@@ -17,7 +17,7 @@ class digitalRootBuilder
     {
         return (new digitalRoot($input, $alternative_values));
     }
-    
+
     /**
      * getDigitalRoot
      *
@@ -36,7 +36,7 @@ class digitalRootBuilder
             'digital_root' => $digitalRootModel->getDigRoot()
         ];
     }
-    
+
     /**
      * getDigitalRootCompleteCalculation
      *
@@ -61,7 +61,7 @@ class digitalRootBuilder
             'double_digit_summaries_separated_digits_summaries' => $digitalRootModel->getDigRootddssSummaries(),
         ];
     }
-    
+
     /**
      * getdigitalRootBulk
      *

@@ -69,10 +69,7 @@ class digitalRoot extends digitalRootInputWorker
      */
     public function getDigRootFullCalculation(): array
     {
-        return [
-            'string' => implode(' ', $this->fullCalculation),
-            'array' => $this->fullCalculation
-        ];
+        return $this->fullCalculation;
     }
 
     /**
@@ -82,10 +79,7 @@ class digitalRoot extends digitalRootInputWorker
      */
     public function getSingleDigitSummaries(): array
     {
-        return [
-            'string' => implode(' ', $this->singleDigitSummaries),
-            'array' => $this->singleDigitSummaries
-        ];
+        return $this->singleDigitSummaries;
     }
 
     /**
@@ -95,10 +89,7 @@ class digitalRoot extends digitalRootInputWorker
      */
     public function getDoubleDigitSummaries(): array
     {
-        return [
-            'string' => implode(' ', $this->doubleDigitSummaries),
-            'array' => $this->doubleDigitSummaries
-        ];
+        return $this->doubleDigitSummaries;
     }
 
     /**
@@ -108,10 +99,7 @@ class digitalRoot extends digitalRootInputWorker
      */
     public function getDigRootddsSeparated(): array
     {
-        return [
-            'string' => implode(' ', $this->ddsSeparated),
-            'array' => $this->ddsSeparated
-        ];
+        return $this->ddsSeparated;
     }
 
     /**
@@ -121,10 +109,7 @@ class digitalRoot extends digitalRootInputWorker
      */
     public function getDigRootddssSummaries(): array
     {
-        return [
-            'string' => implode(' ', $this->ddssSummaries),
-            'array' => $this->ddssSummaries
-        ];
+        return $this->ddssSummaries;
     }
 
     /**
