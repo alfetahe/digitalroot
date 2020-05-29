@@ -5,7 +5,7 @@ use digitalRootSrc\digitalRootBuilder;
 use digitalRootSrc\digitalRoot;
 
 final class digitalRootTest extends TestCase
-{    
+{
     /**
      * testDigitalRoot
      *
@@ -18,7 +18,7 @@ final class digitalRootTest extends TestCase
             'digital_root' => '2'
         ], digitalRootBuilder::getDigitalRoot('23081996'));
     }
-    
+
     /**
      * testDigitalRootCompleteCalculation
      *
@@ -29,10 +29,10 @@ final class digitalRootTest extends TestCase
         $this->assertEquals([
             'client_input' => '299493218',
             'digital_root' => 2,
-            'full_calculation' =>[2, 9, 11, 1, 1, 2, 9, 11, 1, 1, 2, 4, 6, 9, 15, 1, 5, 6, 3, 9, 2, 11, 1, 1, 2, 1, 3, 8, 11, 1, 1, 2]
+            'full_calculation' => [2, 9, 11, 1, 1, 2, 9, 11, 1, 1, 2, 4, 6, 9, 15, 1, 5, 6, 3, 9, 2, 11, 1, 1, 2, 1, 3, 8, 11, 1, 1, 2]
         ], digitalRootBuilder::getDigitalRootCompleteCalculation('299493218'));
     }
-    
+
     /**
      * testDigitalRootBulk
      *
@@ -58,7 +58,7 @@ final class digitalRootTest extends TestCase
             'bbc92' => '9'
         ], digitalRootBuilder::getdigitalRootBulk(['abc27', 'bbc92'], ['A' => 1, 'B' => 2, 'C' => 3]));
     }
-    
+
     /**
      * testDigitalRootLetters
      *
@@ -71,7 +71,7 @@ final class digitalRootTest extends TestCase
             'digital_root' => '3'
         ], digitalRootBuilder::getDigitalRoot('a,..,b'));
     }
-    
+
     /**
      * testDigitalRootAlternativeLetters
      *

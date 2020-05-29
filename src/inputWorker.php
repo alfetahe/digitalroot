@@ -2,8 +2,6 @@
 
 namespace digitalRootSrc;
 
-use \digitalRootSrc\digitalRootCalculator;
-
 /**
  * Digitalroot input data worker class.
  */
@@ -15,7 +13,7 @@ class inputWorker
      * @var mixed
      */
     private $inputData;
-    
+
     /**
      * origInputData
      *
@@ -29,7 +27,7 @@ class inputWorker
      * @var array
      */
     public $letterNumericValues;
-    
+
     /**
      * __construct
      *
@@ -46,7 +44,7 @@ class inputWorker
         $this->convertLettersToNumbers();
         $this->convertDigitsToInt();
     }
-    
+
     /**
      * getOrigInputData
      *
@@ -56,7 +54,7 @@ class inputWorker
     {
         return $this->origInputData;
     }
-    
+
     /**
      * getProcessedInputData
      *
