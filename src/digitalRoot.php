@@ -68,9 +68,11 @@ class digitalRoot
     public function __construct(string $input, array $alternative_values = null)
     {
         $this->inputWorker = new inputWorker($input);
-        $this->digitInMemory = isset($this->inputWorker->getProcessedInputData()[0]) ? $this->inputWorker->getProcessedInputData()[0] : 0;
-        $this->activeOrigDigit = isset($this->inputWorker->getProcessedInputData()[0]) ? $this->inputWorker->getProcessedInputData()[0] : 0;
-        $this->fullCalculation = isset($this->inputWorker->getProcessedInputData()[0]) ? [$this->inputWorker->getProcessedInputData()[0]] : [];
+        $inputDataFirstEl = isset($this->inputWorker->getProcessedInputData()[0]) ?
+            $this->inputWorker->getProcessedInputData()[0] : null;
+        $this->digitInMemory = $inputDataFirstEl;
+        $this->activeOrigDigit = $inputDataFirstEl;
+        $this->fullCalculation = [$inputDataFirstEl];
         $this->origInput = $input;
     }
 
@@ -108,11 +110,11 @@ class digitalRoot
     }
 
     /** Get functions end */
-  
+
 
     /** Calculation functions start */
 
-     /**
+    /**
      * For a non-zero number num, digital root is 9 if number is divisible by 9, else digital root is num % 9.
      *
      * @return void
@@ -241,5 +243,4 @@ class digitalRoot
     }
 
     /** Worker functions end */
-
 }
