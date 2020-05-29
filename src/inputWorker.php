@@ -15,6 +15,13 @@ class inputWorker
      * @var mixed
      */
     private $inputData;
+    
+    /**
+     * origInputData
+     *
+     * @var string
+     */
+    private $origInputData;
 
     /**
      * letterNumericValues
@@ -32,11 +39,22 @@ class inputWorker
     public function __construct(string $inputData, $alternative_values = null)
     {
         $this->inputData = $inputData;
+        $this->origInputData = $inputData;
         $this->letterNumericValues = $alternative_values ?? require('config/letters.php');
         $this->cutInputForNumericLetters();
         $this->explodeInput();
         $this->convertLettersToNumbers();
         $this->convertDigitsToInt();
+    }
+    
+    /**
+     * getOrigInputData
+     *
+     * @return void
+     */
+    public function getOrigInputData()
+    {
+        return $this->origInputData;
     }
     
     /**

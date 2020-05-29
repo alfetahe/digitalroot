@@ -65,15 +65,15 @@ class digitalRoot
      * @param  mixed $alternative_values
      * @return void
      */
-    public function __construct(string $input, array $alternative_values = null)
+    public function __construct(inputWorker $inputWorker)
     {
-        $this->inputWorker = new inputWorker($input);
+        $this->inputWorker = $inputWorker;
         $inputDataFirstEl = isset($this->inputWorker->getProcessedInputData()[0]) ?
             $this->inputWorker->getProcessedInputData()[0] : null;
         $this->digitInMemory = $inputDataFirstEl;
         $this->activeOrigDigit = $inputDataFirstEl;
         $this->fullCalculation = [$inputDataFirstEl];
-        $this->origInput = $input;
+        $this->origInput = $inputWorker->getOrigInputData();
     }
 
 

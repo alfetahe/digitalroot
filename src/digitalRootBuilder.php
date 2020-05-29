@@ -3,6 +3,7 @@
 namespace digitalRootSrc;
 
 use digitalRootSrc\digitalRoot;
+use digitalRootSrc\inputWorker;
 
 class digitalRootBuilder
 {
@@ -15,7 +16,9 @@ class digitalRootBuilder
      */
     private static function buildSingleInstance(string $input, array $alternative_values = null): digitalRoot
     {
-        return (new digitalRoot($input, $alternative_values));
+        $inputWorker = new inputWorker($input, $alternative_values);
+
+        return (new digitalRoot($inputWorker));
     }
 
     /**
