@@ -7,7 +7,7 @@ use \digitalRootSrc\digitalRootCalculator;
 /**
  * Digitalroot input data worker class.
  */
-class inputWorker extends digitalRootCalculator
+class inputWorker
 {
     /**
      * inputData
