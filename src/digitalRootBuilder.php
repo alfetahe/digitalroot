@@ -53,12 +53,7 @@ class digitalRootBuilder
         return [
             'client_input' => $digitalRootModel->getOrigInput(),
             'digital_root' => $digitalRootModel->getDigRoot(),
-            'digital_root_from' => $digitalRootModel->getDigitalRootFrom(),
-            'full_calculation' => $digitalRootModel->getDigRootFullCalculation(),
-            'single_digit_summaries' => $digitalRootModel->getSingleDigitSummaries(),
-            'double_digit_summaries' => $digitalRootModel->getDoubleDigitSummaries(),
-            'double_digit_summaries_separated_digits' => $digitalRootModel->getDigRootddsSeparated(),
-            'double_digit_summaries_separated_digits_summaries' => $digitalRootModel->getDigRootddssSummaries(),
+            'full_calculation' => $digitalRootModel->getDigRootFullCalculation()
         ];
     }
 

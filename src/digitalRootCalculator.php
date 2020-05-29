@@ -43,19 +43,12 @@ class digitalRootCalculator extends digitalRootPopulator
      * @var mixed
      */
     protected $activeOrigDigit;
+
     /**
      * For a non-zero number num, digital root is 9 if number is divisible by 9, else digital root is num % 9.
      *
      * @return void
      */
-
-    /**
-     * Digital root last calculation cycle type.
-     *
-     * @var mixed
-     */
-    protected $digRootFrom;
-
     public function shortCalculation(): void
     {
         $modulus = array_sum($this->inputData) % 9;
@@ -80,14 +73,11 @@ class digitalRootCalculator extends digitalRootPopulator
 
             if ($this->checkIfDoubleDigit()) {
                 $this->doubleDigitWorker();
-            } else {
-                $this->populateSingleDigitSummaries();
             }
 
             $this->populateDigits();
         }
 
-        $this->setDigitalRootFrom();
     }
 
     /**
@@ -110,28 +100,9 @@ class digitalRootCalculator extends digitalRootPopulator
      */
     private function doubleDigitWorker()
     {
-        $this->populateDoubleDigitSummaries();
         $this->cutDoubleDigitInMemoryHalf();
-        $this->populateDDSSepartedDigits();
         $this->populateFullCalculation();
         $this->addSingleDigits();
-    }
-
-    /**
-     * setDigitalRootFrom
-     *
-     * @return void
-     */
-    private function setDigitalRootFrom(): void
-    {
-        // The last fourth element must be two digit element if the digital root
-        // comes from the double digit separation summary.
-        $x = count((array) $this->fullCalculation) - 4;
-        if (isset($this->fullCalculation[$x]) && $this->checkIfDoubleDigit($this->fullCalculation[$x])) {
-            $this->digRootFrom = digitalRoot::DOUBLE_DIGIT_SEPARATION_SUMMARY;
-        } else {
-            $this->digRootFrom = digitalRoot::SINGLE_DIGIT_SUMMARY;
-        }
     }
 
     /**
@@ -142,8 +113,6 @@ class digitalRootCalculator extends digitalRootPopulator
     private function addSingleDigits(): void
     {
         $this->digitInMemory = $this->digitInMemoryFirstChar + $this->digitInMemorySecondChar;
-        // Adds automatically summaries from separated double digits to the array.
-        $this->populateDdssSummaries();
         $this->unsetMethod();
         $this->populateFullCalculation();
     }

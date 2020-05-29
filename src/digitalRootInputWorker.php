@@ -49,18 +49,6 @@ class digitalRootInputWorker extends digitalRootCalculator
     }
 
     /**
-     * cutInputForNumeric
-     *
-     * @return void
-     */
-    protected function cutInputForNumeric(): void
-    {
-        if (!empty($this->inputData)) {
-            $this->inputData = preg_replace("/[^0-9]/", "", $this->inputData);
-        }
-    }
-
-    /**
      * cutInputForNumericLetters
      *
      * @return void

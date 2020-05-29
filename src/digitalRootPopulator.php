@@ -15,80 +15,11 @@ class digitalRootPopulator
     protected $orignInput;
 
     /**
-     * Single digit summaries. 
-     *
-     * @var mixed
-     */
-    protected $singleDigitSummaries;
-
-    /**
-     * Double digit summaries.  
-     *
-     * @var mixed
-     */
-    protected $doubleDigitSummaries;
-
-    /**
-     * Double digit summaries separated digits. 
-     *
-     * @var mixed
-     */
-    protected $ddsSeparated;
-
-    /**
-     * Summaries from separated double digits.  
-     *
-     * @var mixed
-     */
-    protected $ddssSummaries;
-
-    /**
      * Full calculation
      *
      * @var mixed
      */
     protected $fullCalculation;
-
-    /**
-     * populateSingleDigitSummaries
-     *
-     * @return void
-     */
-    protected function populateSingleDigitSummaries(): void
-    {
-        $this->singleDigitSummaries[] = $this->digitInMemory;
-    }
-
-    /**
-     * populateDoubleDigitSummaries
-     *
-     * @return void
-     */
-    protected function populateDoubleDigitSummaries(): void
-    {
-        $this->doubleDigitSummaries[] = $this->digitInMemory;
-    }
-
-    /**
-     * populateDDSSepartedDigits
-     *
-     * @return void
-     */
-    protected function populateDDSSepartedDigits(): void
-    {
-        $this->ddsSeparated[] = $this->digitInMemoryFirstChar;
-        $this->ddsSeparated[] = $this->digitInMemorySecondChar;
-    }
-
-    /**
-     * populateDdssSummaries
-     *
-     * @return void
-     */
-    protected function populateDdssSummaries(): void
-    {
-        $this->ddssSummaries[] =  $this->digitInMemory;
-    }
 
     /**
      * populateFullCalculation
