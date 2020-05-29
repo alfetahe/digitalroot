@@ -152,7 +152,7 @@ class digitalRoot
 
     /** Worker functions start */
 
-/**
+    /**
      * checkIfDoubleDigit
      *
      * @param  mixed $digits
