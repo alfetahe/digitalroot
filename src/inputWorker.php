@@ -7,21 +7,47 @@ use \digitalRootSrc\digitalRootCalculator;
 /**
  * Digitalroot input data worker class.
  */
-class digitalRootInputWorker extends digitalRootCalculator
+class inputWorker extends digitalRootCalculator
 {
     /**
      * inputData
      *
      * @var mixed
      */
-    protected $inputData;
+    private $inputData;
 
     /**
      * letterNumericValues
      *
-     * @var mixed
+     * @var array
      */
-    protected $letterNumericValues;
+    public $letterNumericValues;
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $inputData
+     * @return void
+     */
+    public function __construct(string $inputData, $alternative_values = null)
+    {
+        $this->inputData = $inputData;
+        $this->letterNumericValues = $alternative_values ?? require('config/letters.php');
+        $this->cutInputForNumericLetters();
+        $this->explodeInput();
+        $this->convertLettersToNumbers();
+        $this->convertDigitsToInt();
+    }
+    
+    /**
+     * getProcessedInputData
+     *
+     * @return void
+     */
+    public function getProcessedInputData()
+    {
+        return $this->inputData;
+    }
 
     /**
      * convertDigitsToInt
@@ -80,7 +106,9 @@ class digitalRootInputWorker extends digitalRootCalculator
     protected function explodeInput(): void
     {
         if (!empty($this->inputData)) {
-            $this->inputData  = str_split($this->inputData);
+            $this->inputData = str_split($this->inputData);
+        } else {
+            $this->inputData = [];
         }
     }
 }

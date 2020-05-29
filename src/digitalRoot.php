@@ -2,13 +2,21 @@
 
 namespace digitalRootSrc;
 
-use \digitalRootSrc\digitalRootInputWorker;
+use \digitalRootSrc\inputWorker;
 
 /**
  * digitalRoot
  */
-class digitalRoot extends digitalRootInputWorker
+class digitalRoot extends digitalRootCalculator
 {
+        
+    /**
+     * inputWorker
+     *
+     * @var mixed
+     */
+    protected $inputWorker;
+
     /**
      * __construct
      *
@@ -18,16 +26,11 @@ class digitalRoot extends digitalRootInputWorker
      */
     public function __construct(string $input, array $alternative_values = null)
     {
-        $this->inputData = $input;
-        $this->letterNumericValues = $alternative_values ?? require('config/letters.php');
-        $this->cutInputForNumericLetters();
-        $this->explodeInput();
-        $this->convertLettersToNumbers();
-        $this->convertDigitsToInt();
+        $this->inputWorker = new inputWorker($input);
         $this->digitsInMemory = [];
-        $this->digitInMemory = isset($this->inputData[0]) ? $this->inputData[0] : 0;
-        $this->activeOrigDigit = isset($this->inputData[0]) ? $this->inputData[0] : 0;
-        $this->fullCalculation = isset($this->inputData[0]) ? [$this->inputData[0]] : [];
+        $this->digitInMemory = isset($this->inputWorker->getProcessedInputData()[0]) ? $this->inputWorker->getProcessedInputData()[0] : 0;
+        $this->activeOrigDigit = isset($this->inputWorker->getProcessedInputData()[0]) ? $this->inputWorker->getProcessedInputData()[0] : 0;
+        $this->fullCalculation = isset($this->inputWorker->getProcessedInputData()[0]) ? [$this->inputWorker->getProcessedInputData()[0]] : [];
         $this->origInput = $input;
     }
 

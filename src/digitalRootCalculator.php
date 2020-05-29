@@ -51,7 +51,7 @@ class digitalRootCalculator extends digitalRootPopulator
      */
     public function shortCalculation(): void
     {
-        $modulus = array_sum($this->inputData) % 9;
+        $modulus = array_sum($this->inputWorker->getProcessedInputData()) % 9;
 
         $this->digitInMemory = $modulus == 0 ? 9 : $modulus;
     }
@@ -64,7 +64,7 @@ class digitalRootCalculator extends digitalRootPopulator
     public function longCalculation(): void
     {
         // We dont loop thru first element since it is already added in the construction method.
-        foreach (array_slice($this->inputData, 1) as $digit) {
+        foreach (array_slice($this->inputWorker->getProcessedInputData(), 1) as $digit) {
             $this->activeOrigDigit = $digit;
 
             $this->digitInMemory = $this->digitInMemory + $digit;
